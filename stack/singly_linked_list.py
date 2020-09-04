@@ -1,21 +1,18 @@
-#set up Node class first: Needs self.value and self.next - if it's the first node it's automatically self.head and self.tail
-#then set up LinkedList
-
 class Node: 
-    def __init__(self, value, next=None): #this is our constructor
-        self.value = value #every node has value
-        self.next = next  #every node has a next which points to node in the list
+    def __init__(self, value, next=None):
+        self.value = value
+        self.next = next 
 
 class LinkedList:
     def __init__(self):
-        self.head = None # points to the first node in the list
-        self.tail = None #points to the last node in the list
+        self.head = None
+        self.tail = None
         self.length = 0
 
     def add_to_tail(self, value):
         #Check if there is a tail
         #If there is a tail 
-        if not self.tail: #how we find if it's an empty list
+        if not self.tail:
             # - create a new node with value
             # - set current tail.next to new node
             new_tail = Node(value, None)
@@ -64,7 +61,7 @@ class LinkedList:
             current_tail = self.tail
             self.tail = None
             self.head = None
-            self.length -= 1
+            self.length = self.length - 1
             return current_tail.value
         else:
             current_node = self.head
@@ -73,7 +70,7 @@ class LinkedList:
             current_tail = self.tail
             self.tail = None
             current_node.next = None
-            self.length -= 1
+            self.length = self.length - 1
             return current_tail.value
         #start at head and iterate to the next-to-last node
 
@@ -106,8 +103,8 @@ class LinkedList:
         #iterate through the loop i times:
             #prev_node = self.head
             #for i times
-            for i in range(index - 1):
-                prev_node = prev_node.next
+        for i in range(index - 1):
+            prev_node = prev_node.next
 
             target = prev_node.next
             prev_node.next = target.next

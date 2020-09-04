@@ -27,7 +27,26 @@ class DoublyLinkedList:
     the old head node's previous pointer accordingly.
     """
     def add_to_head(self, value):
-        pass
+        # create a new node
+        new_node = ListNode(value)
+        # if empty list:
+        if self.head is None:
+        # set self.head = new_node
+            self.head = new_node
+        # set self.tail = new_node
+            self.tail = new_node
+        # else:
+        else:
+        # set self.head.prev = new_node  
+            self.head.prev = new_node
+        # set self.head = new_node
+            self.head = new_node
+        # set new_node.next to self.head
+            new_node.next = self.head
+        # new_node.previous = None
+            new_node.previous = None
+        # increment
+        self.length += 1
         
     """
     Removes the List's current head node, making the
@@ -43,7 +62,26 @@ class DoublyLinkedList:
     the old tail node's next pointer accordingly.
     """
     def add_to_tail(self, value):
-        pass
+         # create a new node
+        new_node = ListNode(value)
+        # if empty list:
+        if self.head is None:
+        # set self.head = new_node
+            self.head = new_node
+        # set self.tail = new_node
+            self.tail = new_node
+        # else:
+        else:
+        # set self.head.prev = new_node  
+            self.tail.prev = new_node
+        # set self.head = new_node
+            self.tail = new_node
+        # set new_node.next to self.head
+            new_node.next = self.tail
+        # new_node.previous = None
+            new_node.previous = None
+        # increment
+        self.length += 1
             
     """
     Removes the List's current tail node, making the 
@@ -72,6 +110,15 @@ class DoublyLinkedList:
     order of the other elements of the List.
     """
     def delete(self, node):
+        #Check for empty pointers (remove left and right pointers that surround the node)
+        #Get previous node = node.prev
+        #Set prev_node.next to node.next
+        #Next_node = node.next
+        #Set next_node.previous = prevous_node
+        #decrement length 
+        #Set node.prev = None
+        #Set node.next = None
+        #Return node.value
         pass
 
     """
@@ -79,4 +126,24 @@ class DoublyLinkedList:
     in the List.
     """
     def get_max(self):
-        pass
+        #if length == 0 return None
+        if self.length == 0:
+            return None
+        #if length == 1 return self.head.value
+        if self.length == 1:
+            return self.head.value
+        #Current_max variable
+        current_max = self.head.value
+        #Iterate through the list
+        current_node = self.head
+        #stop when current_node is not None:
+        while current_node is not None:
+        #Compare current_max to each value and update current_max if value > current_max
+            if current_max < current_node.value:
+                current_max = current_node.value
+        #Move current_node forward
+            current_node = current_node.next
+        #Return current_max
+        return current_max
+
+

@@ -9,6 +9,14 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
+# Each node can point to at least 2 nodes
+#     - left
+#     - right
+# Search:
+#     - All values less than the root.value are on the left of the root
+#     - All values greater than the root are on the right of the root
+#     - All subtrees in the BST are also valid BSTs
+
 class BSTNode:
     def __init__(self, value):
         self.value = value
@@ -17,16 +25,34 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
-
-    # Return True if the tree contains the value
-    # False if it does not
+        # if single element:
+        #     - compare target value to node.value
+        #     - if target > node.value
+        #         - go right
+        #         - if node.right is none create new node
+        #     - else if target < node.value
+        # Return True if the tree contains the value
+        # False if it does not
+        if value > self.value:
+            if self.right is None:
+                self.right = BSTNode(value)
+            else:
+                self.right.insert(value)
+        if value < self.value:
+            if self.left is None:
+                self.left = BSTNode(value)
+            else:
+                self.left.insert(value)
     def contains(self, target):
         pass
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        current = self
+
+        while(current.right):
+            current = current.right
+        return current.value 
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
@@ -80,6 +106,6 @@ print("elegant methods")
 print("pre order")
 bst.pre_order_dft()
 print("in order")
-bst.in_order_dft()
+# bst.in_order_dft()
 print("post order")
 bst.post_order_dft()  
